@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>u are NOT sigma</title>
+    <link href="https://fonts.cdnfonts.com/css/chubby-relief" rel="stylesheet">
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/chubby-relief');
+        
+        body {
+            font-family: 'Chubby Relief', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ff00d4;
+            color: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #ff00c8;
+            position: relative;
+            z-index: 10; 
+            text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+        }
+
+        p {
+            font-size: 1.2em;
+        }
+
+        .spigglyimmaa {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            opacity: 0.8; 
+            transition: transform 0.5s, top 0.5s, left 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <h1>SHUT UP JERK</h1>
+
+    <script>
+        const link = [
+            'https://cdn.discordapp.com/attachments/1245494368048250880/1251359561235955875/image.png?ex=666e4ae8&is=666cf968&hm=67f1cd315509461ec77c5d05035b1c86f54548575b0c5180ee2a13ebe1a8f773&',
+            'https://cdn.discordapp.com/attachments/1245494368048250880/1251362095866576896/image.png?ex=666e4d44&is=666cfbc4&hm=241f8b6c2140b771122909ebd1736ff1570048bb49c049e74f7206d42b398eb2&',
+            'https://cdn.discordapp.com/attachments/1245494368048250880/1251363645389148201/image.png?ex=666e4eb6&is=666cfd36&hm=b666a718ebecb2b3df55bd47a17b1034746868eeedf6bcfb5ac04b43066e8342&',
+            'https://cdn.discordapp.com/attachments/1245494368048250880/1251363681112162485/image.png?ex=666e4ebe&is=666cfd3e&hm=3688238a29604af157875222dacd285d77e9a2b7002b29bcbb792ea2ae0c4b07&'
+        ];
+
+        let moving = false;
+        let moveInterval;
+
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function spoogly() {
+            const numImages = 50;
+            const imgSize = 200;
+            for (const url of link) {
+                for (let i = 0; i < numImages; i++) {
+                    const img = document.createElement('img');
+                    img.src = url;
+                    img.className = 'spigglyimmaa';
+                    img.style.top = getRandomInt(0, window.innerHeight - imgSize) + 'px';
+                    img.style.left = getRandomInt(0, window.innerWidth - imgSize) + 'px';
+                    img.style.transform = `rotate(${getRandomInt(0, 360)}deg)`;
+                    document.body.appendChild(img);
+                }
+            }
+        }
+
+        function brrrrr() {
+            const images = document.querySelectorAll('.spigglyimmaa');
+            images.forEach(img => {
+                img.style.top = getRandomInt(0, window.innerHeight - img.offsetHeight) + 'px';
+                img.style.left = getRandomInt(0, window.innerWidth - img.offsetWidth) + 'px';
+                img.style.transform = `rotate(${getRandomInt(0, 360)}deg)`;
+                img.style.transition = 'top 0.2s ease-out, left 0.2s ease-out, transform 0.2s ease-out';
+            });
+        }
+
+        function move() {
+            if (moving) {
+                clearInterval(moveInterval);
+                moving = false;
+            } else {
+                moveInterval = setInterval(brrrrr, 100);
+                moving = true;
+            }
+        }
+
+        window.onload = () => {
+            spoogly();
+            document.body.addEventListener('click', move);
+        };
+    </script>
+</body>
+</html>
