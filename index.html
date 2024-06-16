@@ -17,7 +17,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             overflow: hidden;
             position: relative;
             text-align: center;
@@ -52,8 +52,8 @@
 
         .spigglyimmaa {
             position: absolute;
-            width: 291px;
-            height: 82px;
+            width: 20vw;
+            max-width: 200px;
             opacity: 0.6; 
             transition: transform 0.5s, top 0.5s, left 0.5s;
             cursor: grab;
@@ -125,6 +125,40 @@
         .button:hover {
             background-color: rgba(255, 0, 200, 0.2);
         }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .flash-warning {
+                font-size: 2em;
+                padding: 0.5em 1em;
+            }
+
+            .button {
+                font-size: 0.8em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            a {
+                font-size: 1em;
+            }
+
+            .flash-warning {
+                font-size: 1.5em;
+                padding: 0.3em 0.6em;
+            }
+
+            .button {
+                font-size: 0.6em;
+            }
+        }
     </style>
 </head>
 <body class="flash-active">
@@ -152,7 +186,6 @@
             'https://i.postimg.cc/tg5TYtrC/IMG-2032.png',
             'https://i.postimg.cc/yxWkqgy6/IMG-1931.png',
             'https://i.postimg.cc/4d2x14kD/IMG-0711.png'
-
         ];
 
         let moving = false;
