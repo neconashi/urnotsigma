@@ -24,6 +24,7 @@
             background-image: url('https://i.postimg.cc/HnKjTY6w/Untitled90-20240606215714.jpg');
             background-size: cover;
             background-repeat: repeat;
+            background-position: center;
         }
 
         h1 {
@@ -72,6 +73,7 @@
             text-shadow: none;
             background-image: url('https://i.postimg.cc/qBZNsw-pN/Untitled485-20240505204131.png');
             background-size: cover;
+            background-position: center;
         }
 
         .overlay {
@@ -107,7 +109,7 @@
         }
 
         .button {
-            position: absolute;
+            position: fixed;
             bottom: 20px;
             left: 20px;
             font-family: 'Chubby Relief', sans-serif;
@@ -138,6 +140,8 @@
 
             .button {
                 font-size: 0.8em;
+                bottom: 10px;
+                left: 10px;
             }
         }
 
@@ -157,6 +161,8 @@
 
             .button {
                 font-size: 0.6em;
+                bottom: 5px;
+                left: 5px;
             }
         }
     </style>
@@ -197,8 +203,8 @@
         }
 
         function spoogly() {
-            const numImages = 50;
-            const imgSize = 200;
+            const numImages = 20;
+            const imgSize = 150;
             for (const url of link) {
                 for (let i = 0; i < numImages; i++) {
                     const img = document.createElement('img');
@@ -232,6 +238,7 @@
                 document.body.style.backgroundImage = `url(${backgrounds[currentBgIndex]})`;
                 document.body.style.backgroundSize = 'cover';
                 document.body.style.backgroundRepeat = 'repeat';
+                document.body.style.backgroundPosition = 'center';
                 currentBgIndex = (currentBgIndex + 1) % backgrounds.length;
             }, 100);
         }
