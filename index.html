@@ -197,6 +197,8 @@
         let moving = false;
         let moveInterval;
         let bgInterval;
+        let audio = new Audio('https://github.com/neconashi/urnotsigma/raw/main/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.mp3');
+        let flashActive = true;
 
         function randomint(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -244,7 +246,7 @@
         }
 
         function move() {
-            if (document.body.classList.contains('flash-active')) return;
+            if (flashActive) return;
             if (moving) {
                 clearInterval(moveInterval);
                 clearInterval(bgInterval);
@@ -257,7 +259,7 @@
         }
 
         function taptap() {
-            if (document.body.classList.contains('flash-active')) return;
+            if (flashActive) return;
             const images = document.querySelectorAll('.spigglyimmaa');
             images.forEach(img => {
                 img.classList.add('fall');
@@ -275,18 +277,27 @@
         }
 
         function dragStart(e) {
-            if (document.body.classList.contains('flash-active')) return;
+            if (flashActive) return;
             const style = window.getComputedStyle(e.target, null);
             const str = (parseInt(style.getPropertyValue("left"),10) - e.clientX) + ',' + (parseInt(style.getPropertyValue("top"),10) - e.clientY);
             e.dataTransfer.setData("Text", str);
         }
 
         function dragEnd(e) {
-            if (document.body.classList.contains('flash-active')) return;
+            if (flashActive) return;
             const offset = e.dataTransfer.getData("Text").split(',');
             const img = document.querySelector('.spigglyimmaa');
             img.style.left = (e.clientX + parseInt(offset[0], 10)) + 'px';
             img.style.top = (e.clientY + parseInt(offset[1], 10)) + 'px';
+        }
+
+        function play() {
+            if (flashActive) return;
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
         }
 
         window.onload = () => {
@@ -298,10 +309,13 @@
                     flashWarning.classList.add('hidden');
                     overlay.classList.add('hidden');
                     document.body.classList.remove('flash-active');
+                    flashActive = false;
                 }, 1000); 
             }, 3000);
 
             spoogly();
+
+            document.body.addEventListener('click', play);
             document.body.addEventListener('click', move);
             document.body.addEventListener('dblclick', taptap);
         };
